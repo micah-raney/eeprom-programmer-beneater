@@ -76,10 +76,10 @@ void printContents() {
 
 
 // 4-bit hex decoder for common anode 7-segment display
-byte data[] = { 0x81, 0xcf, 0x92, 0x86, 0xcc, 0xa4, 0xa0, 0x8f, 0x80, 0x84, 0x88, 0xe0, 0xb1, 0xc2, 0xb0, 0xb8 };
+// byte data[] = { 0x81, 0xcf, 0x92, 0x86, 0xcc, 0xa4, 0xa0, 0x8f, 0x80, 0x84, 0x88, 0xe0, 0xb1, 0xc2, 0xb0, 0xb8 };
 
 // 4-bit hex decoder for common cathode 7-segment display
-// byte data[] = { 0x7e, 0x30, 0x6d, 0x79, 0x33, 0x5b, 0x5f, 0x70, 0x7f, 0x7b, 0x77, 0x1f, 0x4e, 0x3d, 0x4f, 0x47 };
+ byte data[] = { 0x7e, 0x30, 0x6d, 0x79, 0x33, 0x5b, 0x5f, 0x70, 0x7f, 0x7b, 0x77, 0x1f, 0x4e, 0x3d, 0x4f, 0x47 };
 
 
 void setup() {
@@ -108,9 +108,9 @@ void setup() {
   for (int address = 0; address < sizeof(data); address += 1) {
     writeEEPROM(address, data[address]);
 
-    if (address % 64 == 0) {
-      Serial.print(".");
-    }
+    if (address % 64 == 0) { 
+      Serial.print("."); 
+      }
   }
   Serial.println(" done");
 
@@ -118,10 +118,15 @@ void setup() {
   // Read and print out the contents of the EERPROM
   Serial.println("Reading EEPROM");
   printContents();
+  Serial.println("done.");
 }
 
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  Serial.println("Input an address to display.");
+  while(Serial.available() == 0){}
+  int addr = Serial.parseInt();
+  Serial.println("Setting address...");
+  Serial.println(addr);
+  setAddress(addr, true); 
 }
