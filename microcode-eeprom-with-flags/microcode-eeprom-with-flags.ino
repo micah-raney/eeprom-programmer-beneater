@@ -10,22 +10,22 @@
 #define EEPROM_D7 12
 #define WRITE_EN 13
 
-#define HLT 0b1000000000000000  // Halt clock
-#define MI  0b0100000000000000  // Memory address register in
-#define RI  0b0010000000000000  // RAM data in
-#define II  0b0001000000000000  // Instruction register in
-#define IO  0b0000100000000000  // Instruction register out
-#define RO  0b0000010000000000  // RAM data out
-#define JMP 0b0000001000000000  // Jump (program counter in)
-#define OUT 0b0000000100000000  // Output value in A
-#define AI  0b0000000010000000  // A register in
-#define BI  0b0000000001000000  // B register in
-#define FI  0b0000000000100000  // Flags in
-#define CE  0b0000000000010000  // Program counter enable
-#define CO  0b0000000000001000  // Program counter out
-#define EO  0b0000000000000100  // ALU out
-#define SUB 0b0000000000000010  // ALU subtract
-#define AO  0b0000000000000001  // A register out
+#define HLT 0b0000000000000001  // Halt clock
+#define MI  0b0000000000000010  // Memory address register in
+#define RI  0b0000000000000100  // RAM data in
+#define II  0b0000000000001000  // Instruction register in
+#define IO  0b0000000000010000  // Instruction register out
+#define RO  0b0000000000100000  // RAM data out
+#define JMP 0b0000000001000000  // Jump (program counter in)
+#define OUT 0b0000000010000000  // Output value in A
+#define AI  0b0000000100000000  // A register in
+#define BI  0b0000001000000000  // B register in
+#define FI  0b0000010000000000  // Flags in
+#define CE  0b0000100000000000  // Program counter enable
+#define CO  0b0001000000000000  // Program counter out
+#define EO  0b0010000000000000  // ALU out
+#define SUB 0b0100000000000000  // ALU subtract
+#define AO  0b1000000000000000  // A register out
 
 #define FLAGS_Z0C0 0
 #define FLAGS_Z0C1 1
