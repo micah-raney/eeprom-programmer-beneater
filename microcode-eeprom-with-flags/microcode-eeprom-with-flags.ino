@@ -14,18 +14,18 @@
 #define MI  0b0100000000000000  // Memory address register in
 #define RI  0b0010000000000000  // RAM data in
 #define II  0b0001000000000000  // Instruction register in
-#define NEG 0b0000100000000000  // Output Register Negation (Two's Complement)
-#define JMP 0b0000010000000000  // Jump (program counter in)
-#define RO  0b0000001000000000  // RAM data out
-#define IO  0b0000000100000000  // Instruction register out
+#define IO  0b0000100000000000  // Instruction register out
+#define RO  0b0000010000000000  // RAM data out
+#define JMP 0b0000001000000000  // Jump (program counter in)
+#define NEG 0b0000000100000000  // Output Register Negation (Two's Complement)
 #define AI  0b0000000010000000  // A register in
 #define BI  0b0000000001000000  // B register in
 #define FI  0b0000000000100000  // Flags in
 #define CE  0b0000000000010000  // Program counter enable
-#define AO  0b0000000000001000  // A register out
-#define SUB 0b0000000000000100  // ALU subtract
-#define EO  0b0000000000000010  // ALU out
-#define CO  0b0000000000000001  // Program counter out
+#define CO  0b0000000000001000  // Program counter out
+#define EO  0b0000000000000100  // ALU out
+#define SUB 0b0000000000000010  // ALU subtract
+#define AO  0b0000000000000001  // A register out
 
 #define FLAGS_Z0C0 0
 #define FLAGS_Z0C1 1
