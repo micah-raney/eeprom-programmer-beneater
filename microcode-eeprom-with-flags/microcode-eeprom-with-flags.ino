@@ -45,8 +45,8 @@ uint16_t UCODE_TEMPLATE[16][8] = {
   { MI|CO,  RO|II|CE,  IO|MI,   RO|AI,  0,            0,            0,     0 }, // 0010 - LDA
   { MI|CO,  RO|II|CE,  IO|MI,   RO|BI,  EO|AI|FI,     0,            0,     0 }, // 0011 - ADD
   { MI|CO,  RO|II|CE,  IO|MI,   RO|BI,  EO|AI|SUB|FI, 0,            0,     0 }, // 0100 - SUB
-  { MI|CO,  RO|II|CE,  IO|MI    AO|RI,  0,            0,            0,     0 }, // 0101 - STA
-  { MI|CO,  RO|II|CE,  IO|AI    0,      0,            0,            0,     0 }, // 0110 - LDI
+  { MI|CO,  RO|II|CE,  IO|MI,   AO|RI,  0,            0,            0,     0 }, // 0101 - STA
+  { MI|CO,  RO|II|CE,  IO|AI,   0,      0,            0,            0,     0 }, // 0110 - LDI
   { MI|CO,  RO|II|CE,  0,       0,      0,            0,            0,     0 }, // 0111   (NOP)
   { MI|CO,  RO|II|CE,  0,       0,      0,            0,            0,     0 }, // 1000   (NOP)
   { MI|CO,  RO|II|CE,  0,       0,      0,            0,            0,     0 }, // 1001   (NOP)
