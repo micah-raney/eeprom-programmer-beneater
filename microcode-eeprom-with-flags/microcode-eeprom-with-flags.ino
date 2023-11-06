@@ -32,10 +32,13 @@
 #define FLAGS_Z1C0 2
 #define FLAGS_Z1C1 3
 
+// **IMPORTANT: ** The addresses for flag-based instructions are predefined here
+//                  and need to match the commented placement in the below table.
 #define JC  0b0111
 #define JZ  0b1000
 
 uint16_t UCODE_TEMPLATE[16][8] = {
+  // fetch_cycle,      3,       4,       5,            6, 7, 8
   { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 0000 - NOP
   { MI|CO,  RO|II|CE,  IO|MI,   RO|AI,   0,            0, 0, 0 },   // 0001 - LDA
   { MI|CO,  RO|II|CE,  IO|MI,   RO|BI,   EO|AI|FI,     0, 0, 0 },   // 0010 - ADD
