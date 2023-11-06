@@ -17,7 +17,7 @@
 #define IO  0b0000100000000000  // Instruction register out
 #define RO  0b0000010000000000  // RAM data out
 #define JMP 0b0000001000000000  // Jump (program counter in)
-#define NEG 0b0000000100000000  // Output Register Negation (Two's Complement)
+#define OUT 0b0000000100000000  // Output value in A
 #define AI  0b0000000010000000  // A register in
 #define BI  0b0000000001000000  // B register in
 #define FI  0b0000000000100000  // Flags in
@@ -50,7 +50,7 @@ uint16_t UCODE_TEMPLATE[16][8] = {
   { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 1011
   { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 1100
   { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 1101
-  { MI|CO,  RO|II|CE,  AO|NEG,  0,       0,            0, 0, 0 },   // 1110 - OUT
+  { MI|CO,  RO|II|CE,  AO|OUT,  0,       0,            0, 0, 0 },   // 1110 - OUT
   { MI|CO,  RO|II|CE,  HLT,     0,       0,            0, 0, 0 },   // 1111 - HLT
 };
 
