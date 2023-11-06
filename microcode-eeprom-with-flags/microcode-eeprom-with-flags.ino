@@ -22,10 +22,10 @@
 #define BI  0b0000001000000000  // B register in
 #define FI  0b0000010000000000  // Flags in
 #define CE  0b0000100000000000  // Program counter enable
-#define CO  0b0001000000000000  // Program counter out
-#define EO  0b0010000000000000  // ALU out
-#define SUB 0b0100000000000000  // ALU subtract
-#define AO  0b1000000000000000  // A register out
+#define AO  0b0001000000000000  // A register out
+#define SUB 0b0010000000000000  // ALU subtract
+#define EO  0b0100000000000000  // ALU out
+#define CO  0b1000000000000000  // Program counter out
 
 #define FLAGS_Z0C0 0
 #define FLAGS_Z0C1 1
