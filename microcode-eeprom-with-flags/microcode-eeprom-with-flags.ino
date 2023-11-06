@@ -34,25 +34,26 @@
 
 // **IMPORTANT: ** The addresses for flag-based instructions are predefined here
 //                  and need to match the commented placement in the below table.
-#define JC  0b0111
-#define JZ  0b1000
+#define JC  0b1011
+#define JZ  0b1100
+#define JNZ 0b1101
 
 uint16_t UCODE_TEMPLATE[16][8] = {
   // fetch_cycle,      3,       4,       5,            6, 7, 8
-  { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 0000 - NOP
-  { MI|CO,  RO|II|CE,  IO|MI,   RO|AI,   0,            0, 0, 0 },   // 0001 - LDA
-  { MI|CO,  RO|II|CE,  IO|MI,   RO|BI,   EO|AI|FI,     0, 0, 0 },   // 0010 - ADD
-  { MI|CO,  RO|II|CE,  IO|MI,   RO|BI,   EO|AI|SUB|FI, 0, 0, 0 },   // 0011 - SUB
-  { MI|CO,  RO|II|CE,  IO|MI,   AO|RI,   0,            0, 0, 0 },   // 0100 - STA
-  { MI|CO,  RO|II|CE,  IO|AI,   0,       0,            0, 0, 0 },   // 0101 - LDI
-  { MI|CO,  RO|II|CE,  IO|JMP,  0,       0,            0, 0, 0 },   // 0110 - JMP
-  { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 0111 - JC
-  { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 1000 - JZ
+  { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 0000 - DEC
+  { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 0001 - INC
+  { MI|CO,  RO|II|CE,  IO|MI,   RO|AI,   0,            0, 0, 0 },   // 0010 - LDA
+  { MI|CO,  RO|II|CE,  IO|MI,   RO|BI,   EO|AI|FI,     0, 0, 0 },   // 0011 - ADD
+  { MI|CO,  RO|II|CE,  IO|MI,   RO|BI,   EO|AI|SUB|FI, 0, 0, 0 },   // 0100 - SUB
+  { MI|CO,  RO|II|CE,  IO|MI    AO|RI,   0,            0, 0, 0 },   // 0101 - STA
+  { MI|CO,  RO|II|CE,  IO|AI    0,       0,            0, 0, 0 },   // 0110 - LDI
+  { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 0111
+  { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 1000
   { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 1001
-  { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 1010
-  { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 1011
-  { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 1100
-  { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 1101
+  { MI|CO,  RO|II|CE,  IO|JMP,  0,       0,            0, 0, 0 },   // 1010 - JMP
+  { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 1011 - JC
+  { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 1100 - JZ
+  { MI|CO,  RO|II|CE,  0,       0,       0,            0, 0, 0 },   // 1101 - JNZ
   { MI|CO,  RO|II|CE,  AO|OUT,  0,       0,            0, 0, 0 },   // 1110 - OUT
   { MI|CO,  RO|II|CE,  HLT,     0,       0,            0, 0, 0 },   // 1111 - HLT
 };
@@ -62,10 +63,14 @@ uint16_t ucode[4][16][8];
 void initUCode() {
   // ZF = 0, CF = 0
   memcpy(ucode[FLAGS_Z0C0], UCODE_TEMPLATE, sizeof(UCODE_TEMPLATE));
+  // CUSTOM ADDITION: JNZ
+  ucode[FLAGS_Z0C1][JNZ][2] = IO|JMP;
 
   // ZF = 0, CF = 1
   memcpy(ucode[FLAGS_Z0C1], UCODE_TEMPLATE, sizeof(UCODE_TEMPLATE));
   ucode[FLAGS_Z0C1][JC][2] = IO|JMP;
+  // CUSTOM ADDITION: JNZ
+  ucode[FLAGS_Z0C1][JNZ][2] = IO|JMP;
 
   // ZF = 1, CF = 0
   memcpy(ucode[FLAGS_Z1C0], UCODE_TEMPLATE, sizeof(UCODE_TEMPLATE));
