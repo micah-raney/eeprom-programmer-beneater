@@ -14,18 +14,21 @@
 #define MI  0b0000000000000010  // Memory address register in
 #define RI  0b0000000000000100  // RAM data in
 #define II  0b0000000000001000  // Instruction register in
+
 #define IO  0b0000000000010000  // Instruction register out
 #define RO  0b0000000000100000  // RAM data out
 #define JMP 0b0000000001000000  // Jump (program counter in)
 #define OUT 0b0000000010000000  // Output value in A
+
 #define AI  0b0000000100000000  // A register in
 #define BI  0b0000001000000000  // B register in
 #define FI  0b0000010000000000  // Flags in
 #define CE  0b0000100000000000  // Program counter enable
-#define AO  0b0001000000000000  // A register out
-#define SUB 0b0010000000000000  // ALU subtract
-#define EO  0b0100000000000000  // ALU out
-#define CO  0b1000000000000000  // Program counter out
+
+#define CO  0b0001000000000000  // Program counter out
+#define EO  0b0010000000000000  // ALU out
+#define SUB 0b0100000000000000  // ALU subtract
+#define AO  0b1000000000000000  // A register out 
 
 #define FLAGS_Z0C0 0
 #define FLAGS_Z0C1 1
@@ -36,7 +39,7 @@
 //                  and need to match the commented placement in the below table.
 #define JC  0b1011
 #define JZ  0b1100
-#define JNZ 0b1101
+//#define JNZ 0b1101
 
 uint16_t UCODE_TEMPLATE[16][8] = {
   // fetch_cycle,      3,       4,      5,            6, 7, 8
@@ -64,13 +67,13 @@ void initUCode() {
   // ZF = 0, CF = 0
   memcpy(ucode[FLAGS_Z0C0], UCODE_TEMPLATE, sizeof(UCODE_TEMPLATE));
   // CUSTOM ADDITION: JNZ
-  ucode[FLAGS_Z0C1][JNZ][2] = IO|JMP;
+  //ucode[FLAGS_Z0C1][JNZ][2] = IO|JMP;
 
   // ZF = 0, CF = 1
   memcpy(ucode[FLAGS_Z0C1], UCODE_TEMPLATE, sizeof(UCODE_TEMPLATE));
   ucode[FLAGS_Z0C1][JC][2] = IO|JMP;
   // CUSTOM ADDITION: JNZ
-  ucode[FLAGS_Z0C1][JNZ][2] = IO|JMP;
+  //ucode[FLAGS_Z0C1][JNZ][2] = IO|JMP;
 
   // ZF = 1, CF = 0
   memcpy(ucode[FLAGS_Z1C0], UCODE_TEMPLATE, sizeof(UCODE_TEMPLATE));
