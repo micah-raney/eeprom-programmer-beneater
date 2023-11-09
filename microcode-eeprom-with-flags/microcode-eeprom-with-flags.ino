@@ -39,7 +39,7 @@
 //                  and need to match the commented placement in the below table.
 #define JC  0b1011
 #define JZ  0b1100
-//#define JNZ 0b1101
+#define JNZ 0b1101
 
 uint16_t UCODE_TEMPLATE[16][8] = {
   // fetch_cycle,      3,       4,      5,            6, 7, 8
@@ -67,13 +67,13 @@ void initUCode() {
   // ZF = 0, CF = 0
   memcpy(ucode[FLAGS_Z0C0], UCODE_TEMPLATE, sizeof(UCODE_TEMPLATE));
   // CUSTOM ADDITION: JNZ
-  //ucode[FLAGS_Z0C1][JNZ][2] = IO|JMP;
+  ucode[FLAGS_Z0C0][JNZ][2] = IO|JMP;
 
   // ZF = 0, CF = 1
   memcpy(ucode[FLAGS_Z0C1], UCODE_TEMPLATE, sizeof(UCODE_TEMPLATE));
   ucode[FLAGS_Z0C1][JC][2] = IO|JMP;
   // CUSTOM ADDITION: JNZ
-  //ucode[FLAGS_Z0C1][JNZ][2] = IO|JMP;
+  ucode[FLAGS_Z0C1][JNZ][2] = IO|JMP;
 
   // ZF = 1, CF = 0
   memcpy(ucode[FLAGS_Z1C0], UCODE_TEMPLATE, sizeof(UCODE_TEMPLATE));
